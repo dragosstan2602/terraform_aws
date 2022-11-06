@@ -54,11 +54,21 @@ pipelines:
 #                   job: test
 #                   source: test-bin/
 #                   destination: bin/
+               - exec:
+                   command: /bin/bash
+                   arguments:
+                     - -c
+                     - cp /home/ubuntu/tf-scripts/main.sh ~/main.sh
+               - exec:
+                 - command: /bin/bash
+                   arguments:
+                     - -c
+                     - chmod +x ~/main.sh
                - exec: # indicates type of task
                    command: /bin/bash
                    arguments:
                      - -c
-                     - ~/tf-scrips/main.sh
+                     - ./main.sh
 #               # shorthand for script-executor plugin
 #               - script: ./build.sh ci
 
