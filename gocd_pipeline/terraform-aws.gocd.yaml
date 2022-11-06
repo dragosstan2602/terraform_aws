@@ -62,13 +62,13 @@ pipelines:
                     command: /bin/bash
                     arguments:
                       - -c
-                      - chmod -R +x ~/terraform_scripts/
+                      - chmod -R +x /var/lib/go-agent/pipelines/terraform-aws/terraform_scripts/
                     run_if: passed
                 - exec: # indicates type of task
                     command: /bin/bash
                     arguments:
                       - -c
-                      - ~/terraform_scripts/main.sh
+                      - ./var/lib/go-agent/pipelines/terraform-aws/terraform_scripts/main.sh
                     run_if: passed
       - TF-APPLY:
           fetch_materials: true
