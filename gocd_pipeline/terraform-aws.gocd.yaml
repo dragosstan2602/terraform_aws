@@ -59,16 +59,19 @@ pipelines:
                    arguments:
                      - -c
                      - cp /home/ubuntu/tf-scripts/main.sh ~/main.sh
+                   run_if: passed
                - exec:
                  - command: /bin/bash
                    arguments:
                      - -c
                      - chmod +x ~/main.sh
+                   run_if: passed
                - exec: # indicates type of task
                    command: /bin/bash
                    arguments:
                      - -c
                      - ./main.sh
+                   run_if: passed
 #               # shorthand for script-executor plugin
 #               - script: ./build.sh ci
 
