@@ -1,0 +1,64 @@
+format_version: 10
+environments:
+  terraform-aws-env:
+    pipelines:
+      - terraform-aws
+pipelines:
+  terraform-aws: # definition of mypipe1 pipeline
+    group: tf-cloud
+    display_order: -1
+    label_template: "${COUNT}"
+    lock_behavior: lockWhenFinished
+    environment_variables:
+      INPUT_TF_ACTIONS_VERSION: 1.3.3
+
+    materials:
+      git: # this is the name of material, the name can contain only of alphanumeric & underscore characters
+        git: https://github.com/dragosstan2602/terraform_aws.git
+        branch: main
+        auto_update: true
+        ignore:
+          - gocd_pipelines
+#      terraform-task:
+#        pipeline: terraform-aws
+#        stage: make-artifact
+#        ignore_for_scheduling: true
+    stages: # list of stages in order
+      - TF-PLAN:
+          fetch_materials: true
+          clean_workspace: true
+          keep_artifacts: true
+          approval:
+            type: success
+            allow_only_on_success: true
+
+          jobs:
+            tf-plan: # name of the job
+              resources:
+               - tf-aws
+#              artifacts:
+#               - build:
+#                   source: bin/
+#                   destination: build
+#               - test:
+#                   source: tests/
+#                   destination: test-reports/
+#               - test:
+#                   source: coverage.xml
+              tabs:
+                report: test-reports/index.html
+              tasks: # ordered list of tasks to execute in job csharp
+#               - fetch:
+#                   pipeline: pipe2
+#                   stage: build
+#                   job: test
+#                   source: test-bin/
+#                   destination: bin/
+               - exec: # indicates type of task
+                   command: /bin/bash
+                   arguments:
+                     - c
+                     - ./tf-scrips/main.sh
+#               # shorthand for script-executor plugin
+#               - script: ./build.sh ci
+
