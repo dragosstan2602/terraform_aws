@@ -41,7 +41,7 @@ pipelines:
                 tf-plan: tf/report/plan.txt
               tasks: # ordered list of tasks to execute in job csharp
                 - exec:
-                    command: /bin/bah
+                    command: /bin/bash
                     arguments:
                       - -c
                       - git clone https://github.com/dragosstan2602/terraform_scripts.git
@@ -74,7 +74,7 @@ pipelines:
                 tf-plan: tf/report/apply.txt
               tasks: # ordered list of tasks to execute in job csharp
                 - exec:
-                    command: /bin/bah
+                    command: /bin/bash
                     arguments:
                       - -c
                       - git clone https://github.com/dragosstan2602/terraform_scripts.git
