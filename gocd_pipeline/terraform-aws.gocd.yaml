@@ -40,18 +40,24 @@ pipelines:
 #                report: test-reports/index.html
                 tf-plan: tf/report/plan.txt
               tasks: # ordered list of tasks to execute in job csharp
-#               - fetch:
-#                   pipeline: pipe2
-#                   stage: build
-#                   job: test
-#                   source: test-bin/
-#                   destination: bin/
-               - exec: # indicates type of task
-                   command: /bin/bash
-                   arguments:
-                     - -c
-                     - ~/main.sh
-                   run_if: passed
+                - exec:
+                    command: /bin/bah
+                    arguments:
+                      - -c
+                      - git clone https://github.com/dragosstan2602/terraform_scripts.git
+                    run_if: passed
+                - exec:
+                    command: /bin/bash
+                    arguments:
+                      - -c
+                      - chmod -R +x ~/terraform_scripts/
+                    run_if: passed
+                - exec: # indicates type of task
+                    command: /bin/bash
+                    arguments:
+                      - -c
+                      - ~/terraform_scripts/main.sh
+                    run_if: passed
       - TF-APPLY:
           fetch_materials: true
           clean_workspace: true
@@ -67,10 +73,22 @@ pipelines:
               tabs:
                 tf-plan: tf/report/apply.txt
               tasks: # ordered list of tasks to execute in job csharp
+                - exec:
+                    command: /bin/bah
+                    arguments:
+                      - -c
+                      - git clone https://github.com/dragosstan2602/terraform_scripts.git
+                    run_if: passed
+                - exec:
+                    command: /bin/bash
+                    arguments:
+                      - -c
+                      - chmod -R +x ~/terraform_scripts/
+                    run_if: passed
                 - exec: # indicates type of task
                     command: /bin/bash
                     arguments:
                       - -c
-                      - ~/apply.sh
+                      - ~/terraform_scripts/apply.sh
                     run_if: passed
 
