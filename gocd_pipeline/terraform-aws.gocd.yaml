@@ -50,6 +50,18 @@ pipelines:
                     command: /bin/bash
                     arguments:
                       - -c
+                      - echo $(pwd)
+                    run_if: passed
+                - exec:
+                    command: /bin/bash
+                    arguments:
+                      - -c
+                      - echo $(ls -latr)
+                    run_if: passed
+                - exec:
+                    command: /bin/bash
+                    arguments:
+                      - -c
                       - chmod -R +x ~/terraform_scripts/
                     run_if: passed
                 - exec: # indicates type of task
