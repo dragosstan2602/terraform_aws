@@ -95,12 +95,12 @@ pipelines:
                     command: /bin/bash
                     arguments:
                       - -c
-                      - chmod -R +x ~/terraform_scripts/
+                      - chmod -R +x /terraform_scripts/
                     run_if: passed
                 - exec: # indicates type of task
                     command: /bin/bash
                     arguments:
                       - -c
-                      - ~/terraform_scripts/apply.sh
+                      - ./terraform_scripts/apply.sh
                     run_if: passed
 
