@@ -58,7 +58,7 @@ pipelines:
                    command: /bin/bash
                    arguments:
                      - -c
-                     - ./tf-scrips/main.sh
+                     - ~/tf-scrips/main.sh
 #               # shorthand for script-executor plugin
 #               - script: ./build.sh ci
 
