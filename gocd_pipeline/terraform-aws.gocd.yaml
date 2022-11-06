@@ -61,7 +61,7 @@ pipelines:
                      - cp /home/ubuntu/tf-scripts/main.sh ~/main.sh
                    run_if: passed
                - exec:
-                 - command: /bin/bash
+                   command: /bin/bash
                    arguments:
                      - -c
                      - chmod +x ~/main.sh
