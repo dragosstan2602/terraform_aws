@@ -54,18 +54,6 @@ pipelines:
 #                   job: test
 #                   source: test-bin/
 #                   destination: bin/
-               - exec:
-                   command: /bin/bash
-                   arguments:
-                     - -c
-                     - cp /home/ubuntu/tf-scripts/main.sh ~/main.sh
-                   run_if: passed
-               - exec:
-                   command: /bin/bash
-                   arguments:
-                     - -c
-                     - chmod +x ~/main.sh
-                   run_if: passed
                - exec: # indicates type of task
                    command: /bin/bash
                    arguments:
